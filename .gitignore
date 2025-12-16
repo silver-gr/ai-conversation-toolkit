@@ -1,0 +1,36 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+.env
+
+# Tool caches and databases
+cache/
+conversation_cache.db*
+chatgpt_cache.db*
+claude_cache.db*
+*.db
+*.db-shm
+*.db-wal
+
+# Generated outputs
+output/
+
+# Raw exports and activity data
+ChatGPT/
+Claude/
+Google/
+
+# Local archives / exports
+*.zip
+*.tar
+*.tar.gz
+*.tgz
