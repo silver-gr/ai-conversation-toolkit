@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-AI Conversation Export Toolkit - extracts, analyzes, and indexes conversations from ChatGPT, Claude, and Google Gemini into searchable markdown files with optional Obsidian vault generation.
+AI Conversation Export Toolkit - extracts, analyzes, and indexes conversations from ChatGPT, Claude, and Google Gemini into searchable markdown files with YAML frontmatter and optional Obsidian vault generation.
 
 ## Commands
 
@@ -35,6 +35,24 @@ python3 scripts/run_import.py --all --dry-run
 python3 scripts/run_import.py --all --notes "Monthly backup import"
 
 # =============================================================================
+# POST-PROCESSING
+# =============================================================================
+
+# Build unified research index (scans output/*/conversations/)
+python3 scripts/research_index.py
+
+# Extract Claude memories to markdown
+python3 scripts/memories_to_md.py
+
+# Migrate old inline metadata to YAML frontmatter (idempotent)
+python3 scripts/migrate_to_yaml.py
+
+# Identify and rename Gemini files with non-descriptive titles
+python3 scripts/gemini_meta_indexer.py              # Dry-run: preview changes
+python3 scripts/gemini_meta_indexer.py --rename      # Apply renames
+python3 scripts/gemini_meta_indexer.py --rename --json  # Also save JSON manifest
+
+# =============================================================================
 # INDIVIDUAL EXTRACTORS (for manual/fine-grained control)
 # =============================================================================
 
@@ -44,32 +62,50 @@ python3 scripts/simple_extractor.py Claude/conversations.json -o output/claude-f
 
 # Extract Gemini activity (groups into sessions by 30-min gaps)
 python3 scripts/gemini_extractor.py "Google/Η δραστηριότητά μου/Εφαρμογές Gemini/MyActivity.json" -o output/gemini
-python3 scripts/gemini_extractor.py path/to/MyActivity.json -o output/gemini --no-grouping  # Disable session grouping
-
-# Extract Claude memories
-python3 scripts/memories_to_md.py
-
-# Build unified research index (scans output/*/conversations/)
-python3 scripts/research_index.py
+python3 scripts/gemini_extractor.py path/to/MyActivity.json -o output/gemini --no-grouping
 
 # AI-powered analysis with caching (requires Claude CLI)
 uv run scripts/conversation_summarizer.py ChatGPT/conversations.json --output-dir output/chatgpt-full --max 50
-uv run scripts/conversation_summarizer.py path/to/conversations.json --no-cache  # Skip cache
-uv run scripts/conversation_summarizer.py path/to/conversations.json --clean-cache 7  # Clean entries >7 days
+uv run scripts/conversation_summarizer.py path/to/conversations.json --no-cache
+uv run scripts/conversation_summarizer.py path/to/conversations.json --clean-cache 7
 
 # Build Obsidian vault from extracted conversations
-python3 scripts/build_december_vault.py  # Edit VAULT_DIR and date patterns in script
+python3 scripts/build_december_vault.py
 
-# Import logging (manual control - usually handled by run_import.py)
+# =============================================================================
+# IMPORT LOG MANAGEMENT
+# =============================================================================
+
 python3 scripts/import_logger.py status                          # Show current status
 python3 scripts/import_logger.py start --notes "Initial import"  # Start new import session
 python3 scripts/import_logger.py complete <import_id>            # Mark import complete
 python3 scripts/import_logger.py regenerate                      # Rebuild markdown report
 ```
 
+## Standard Import Workflow
+
+```bash
+# 1. Place fresh exports in their directories:
+#    ChatGPT/conversations.json, Claude/conversations.json,
+#    Google/Η δραστηριότητά μου/Εφαρμογές Gemini/Ηδραστηριότητάμου.json
+
+# 2. Run incremental import (skips previously imported conversations)
+python3 scripts/run_import.py --all --incremental
+
+# 3. Run post-processing
+python3 scripts/research_index.py
+python3 scripts/memories_to_md.py
+
+# 4. Rename non-descriptive Gemini titles
+python3 scripts/gemini_meta_indexer.py --rename
+
+# 5. Migrate any old-format files to YAML frontmatter (idempotent, safe to re-run)
+python3 scripts/migrate_to_yaml.py
+```
+
 ## Architecture
 
-**Data flow**: Raw exports (`ChatGPT/`, `Claude/`, `Google/`) → Parser scripts → Markdown output (`output/`) → Optional vault generation
+**Data flow**: Raw exports (`ChatGPT/`, `Claude/`, `Google/`) → Parser scripts → YAML-frontmatter markdown (`output/`) → Optional vault generation
 
 ### Core Modules
 
@@ -82,28 +118,27 @@ python3 scripts/import_logger.py regenerate                      # Rebuild markd
 - Auto-detects format from JSON structure (`mapping` dict = ChatGPT, `chat_messages` = Claude)
 - ChatGPT tree traversal via parent-child `mapping` dict
 - Claude linear `chat_messages` array with `sender` field ("human"/"assistant")
+- Generates YAML frontmatter with type, title, date, source, messages, characters, topics
 
 **`gemini_extractor.py`** - Google Gemini extraction:
 - Parses flat activity logs (not threaded conversations)
 - Queries in `title`, responses in `safeHtmlItem[].html`, Canvas artifacts in `subtitles[].name`
 - HTML→Markdown conversion with `strip_html()`
-- Groups activities into sessions based on 30-minute time gaps (configurable)
+- Groups activities into sessions based on 30-minute time gaps (configurable via `--no-grouping`)
 
-**`conversation_summarizer.py`** - AI-powered analysis:
-- Uses `uv run` with inline script dependencies (rich, pandas, openpyxl)
-- SQLite cache with SHA256 content hashing for idempotency
-- Requires Claude CLI for LLM analysis
-
-**`research_index.py`** - Research detection:
+**`research_index.py`** - Research detection and indexing:
 - Scans `output/*/conversations/` for research patterns
+- Parses both YAML frontmatter and legacy inline metadata
 - ChatGPT: "deep research", "sources consulted"
 - Claude: "research allowance", "web_search"
 - Gemini: "here's a research plan", "i've completed your research", "έναρξη έρευνας"
+- Exclusion patterns filter out cancelled tasks, reminders, meta-questions
+- Minimum size filter (5000 chars) with exceptions for file-linked content
 
 **`run_import.py`** - Unified import orchestrator (main entry point):
 - Single CLI to process all sources with consistent workflow
 - Auto-detects default export paths (ChatGPT, Claude, Gemini)
-- Integrates ImportLogger for session tracking
+- Integrates ImportLogger for session tracking and deduplication
 - Post-processing: research index, memories extraction, biography extraction
 - Dry-run mode for previewing operations
 - Rich terminal output (with fallback to plain text)
@@ -111,9 +146,27 @@ python3 scripts/import_logger.py regenerate                      # Rebuild markd
 **`import_logger.py`** - Import tracking system:
 - `ImportLogger` class tracks import sessions across sources (ChatGPT, Claude, Gemini)
 - JSON log (`imports/import_log.json`) stores per-import stats and conversation IDs
-- Auto-generates markdown report (`imports/IMPORT_LOG.md`) with summary tables
+- Auto-generates timestamped markdown reports (`imports/IMPORT_LOG_*.md`)
 - `get_imported_ids(source)` returns all previously imported IDs for deduplication
-- CLI interface for manual import management: `python3 scripts/import_logger.py status`
+- CLI interface: `python3 scripts/import_logger.py status`
+
+**`migrate_to_yaml.py`** - YAML frontmatter migration:
+- Converts old inline `## Metadata` sections to YAML frontmatter
+- Idempotent: skips files that already have `---` frontmatter
+- Extracts topics from conversation content
+- Scans `output/{chatgpt-full,claude-full,gemini}/conversations/`
+
+**`gemini_meta_indexer.py`** - Gemini title renaming:
+- Identifies files with non-descriptive titles (e.g., "start-research", "translate")
+- Extracts descriptive topics from first user message using keyword extraction
+- Renames files and updates YAML frontmatter title + H1 heading
+- Handles filename collisions with `_N` suffixes
+- Dry-run by default; use `--rename` to apply
+
+**`conversation_summarizer.py`** - AI-powered analysis:
+- Uses `uv run` with inline script dependencies (rich, pandas, openpyxl)
+- SQLite cache with SHA256 content hashing for idempotency
+- Requires Claude CLI for LLM analysis
 
 ### Export Format Differences
 
@@ -122,6 +175,36 @@ python3 scripts/import_logger.py regenerate                      # Rebuild markd
 | ChatGPT | `mapping` dict with tree structure | Unix seconds | Parent-child traversal |
 | Claude | `chat_messages` array | ISO 8601 | Linear array, `sender` field |
 | Gemini | Flat activity log | ISO 8601 | `title` (query) + `safeHtmlItem` (response) |
+
+## Output Format
+
+All conversation files use YAML frontmatter:
+
+```yaml
+---
+type: conversation
+title: "Conversation Title"
+date: 2025-07-02T14:30:00
+source: chatgpt    # chatgpt | claude | gemini
+model: null
+messages: 28
+characters: 38198
+has_code: true
+topics:
+  - keyword1
+  - keyword2
+research_type: null
+---
+# Conversation Title
+
+## Conversation
+
+### USER (14:30)
+...
+
+### ASSISTANT (14:31)
+...
+```
 
 ## Output Structure
 
@@ -139,7 +222,8 @@ output/
 ├── memories/
 │   └── *.md
 ├── RESEARCH_INDEX.md
-└── december-2025-vault/  # Optional Obsidian vault
+├── gemini_files_to_reindex.json   # Gemini meta-indexer manifest
+└── december-2025-vault/           # Optional Obsidian vault
     ├── Home.md
     ├── Daily/YYYY-MM-DD.md
     ├── Topics/*.md
@@ -147,14 +231,15 @@ output/
 
 imports/
 ├── import_log.json       # JSON log of all imports (schema below)
-└── IMPORT_LOG.md         # Auto-generated markdown report
+└── IMPORT_LOG_*.md       # Timestamped markdown reports
 ```
 
 ## Key Patterns
 
 - All scripts use `slugify()` for safe filenames: lowercase, no special chars, max 50 chars
 - Output files named `YYYYMMDD_title-slug.md` for chronological sorting
-- Metadata block at top of each markdown with Date, Source, Messages, Total Characters
+- YAML frontmatter with structured metadata (date, source, messages, characters, topics)
+- Deduplication via conversation IDs stored in import log (`get_imported_ids()`)
 - Cache databases (`*.db`) use SQLite WAL mode for concurrent access
 
 ## File Locations
@@ -165,35 +250,51 @@ imports/
 - Cache DBs: `*_cache.db` files (gitignored)
 - Documentation: `docs/*.md`
 
+## Import History
+
+| Date | ChatGPT | Claude | Gemini | Notes |
+|------|---------|--------|--------|-------|
+| 2025-12-16 | 16 | 51 | 389 | Retroactive (pre-logger ghost run) |
+| 2026-01-13 | 1,541 | 142 | — | First logged import |
+| 2026-01-25 | — | — | 343 | First Gemini import |
+| 2026-02-09 | 48 | 319 | 8 | Latest import |
+
+**Totals**: 1,605 ChatGPT + 512 Claude + 740 Gemini sessions = **100% ID coverage**
+
 ## Import Log Schema
 
 ```json
 {
   "imports": [
     {
-      "id": "import_20251216_173900",
-      "started_at": "2025-12-16T17:39:00Z",
-      "completed_at": "2025-12-16T18:15:00Z",
+      "id": "import_20251216_000000_retroactive",
+      "started_at": "2025-12-16T16:30:00+00:00",
+      "completed_at": "2025-12-16T17:00:00+00:00",
       "status": "completed",
       "sources": {
         "chatgpt": {
           "file": "conversations.json",
-          "total_in_export": 1247,
-          "new_imported": 1247,
+          "total_in_export": 1605,
+          "new_imported": 16,
           "skipped_existing": 0,
-          "conversation_ids": ["conv_abc123", "..."]
-        },
-        "claude": { "..." },
-        "gemini": { "..." }
+          "conversation_ids": ["uuid1", "uuid2", "..."]
+        }
       },
-      "post_processing": ["research_index", "biography_extractor"],
-      "notes": ""
+      "post_processing": ["research_index"],
+      "notes": "Retroactive entry for initial unlogged run"
     }
   ],
   "metadata": {
-    "last_updated": "...",
-    "total_imports": 1,
+    "last_updated": "2026-02-09T...",
+    "total_imports": 5,
     "schema_version": "1.0.0"
   }
 }
 ```
+
+## Known Issues & Notes
+
+- **Gemini session grouping**: Activities within 30 minutes are grouped into one conversation. Use `--no-grouping` to disable.
+- **YAML frontmatter required**: `research_index.py` and `migrate_to_yaml.py` both expect YAML frontmatter. Run migration if working with old-format files.
+- **Gemini non-descriptive titles**: Many Gemini Deep Research sessions default to "start-research". Run `gemini_meta_indexer.py --rename` after imports.
+- **Import ID tracking**: The import logger tracks conversation UUIDs (ChatGPT/Claude) and session timestamps (Gemini) for deduplication. All current exports have 100% ID coverage.
