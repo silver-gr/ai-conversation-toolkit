@@ -10,6 +10,73 @@ from pathlib import Path
 from datetime import datetime
 
 
+# Minimum character count for a file to be considered substantial research
+MIN_RESEARCH_SIZE = 5000
+
+# Patterns that indicate a conversation should be EXCLUDED from research index
+EXCLUSION_PATTERNS = [
+    # Cancelled/failed tasks
+    r'task cancelled by user',
+    r'η εργασία ακυρώθηκε',
+    r'research cancelled',
+    
+    # Reminder/task management (not research)
+    r'google tasks',
+    r'θύμισε μου',
+    r'remind me tomorrow',
+    r'υπενθύμιση',
+    r'θα σας υπενθυμίσω',
+    
+    # Generic list requests (not deep research)
+    r'generate a comprehensive list of subreddits',
+    r'list of subreddits',
+    
+    # Meta-questions about research tools (not actual research)
+    r'how long would it take for me to manually do the research',
+    r'how many sources did you check',
+]
+
+# Titles/filenames that are non-research content
+EXCLUDED_TITLES = [
+    'οδηγίες',  # Instructions/reminders
+    'new-chat',  # Generic untitled chats that got misclassified
+]
+
+
+def is_excluded_content(filepath: Path) -> bool:
+    """Check if file content matches exclusion patterns."""
+    content = filepath.read_text(encoding='utf-8').lower()
+    
+    for pattern in EXCLUSION_PATTERNS:
+        if re.search(pattern, content):
+            return True
+    
+    # Check filename for excluded titles
+    filename = filepath.stem.lower()
+    for title in EXCLUDED_TITLES:
+        if title in filename:
+            return True
+    
+    return False
+
+
+def _parse_yaml_frontmatter(content: str) -> dict:
+    """Parse YAML frontmatter from markdown content."""
+    fm = {}
+    if not content.startswith('---'):
+        return fm
+    end = content.find('\n---', 3)
+    if end == -1:
+        return fm
+    block = content[4:end]
+    for line in block.split('\n'):
+        if ':' in line and not line.startswith(' '):
+            key, _, val = line.partition(':')
+            val = val.strip().strip('"')
+            fm[key.strip()] = val
+    return fm
+
+
 def extract_metadata_from_md(filepath: Path, source_hint: str = '') -> dict:
     """Extract metadata and first user query from markdown file."""
     content = filepath.read_text(encoding='utf-8')
@@ -27,35 +94,56 @@ def extract_metadata_from_md(filepath: Path, source_hint: str = '') -> dict:
         'research_type': '',
     }
 
-    # Extract title (first # line)
-    title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
-    if title_match:
-        metadata['title'] = title_match.group(1)
+    # Try YAML frontmatter first
+    fm = _parse_yaml_frontmatter(content)
+    if fm:
+        if fm.get('title'):
+            metadata['title'] = fm['title']
+        date_val = fm.get('date', '')
+        if date_val:
+            metadata['date'] = date_val[:10]
+        source_val = fm.get('source', '')
+        if source_val:
+            metadata['source'] = source_val.upper()
+        try:
+            metadata['messages'] = int(fm.get('messages', 0))
+        except (ValueError, TypeError):
+            pass
+        try:
+            metadata['chars'] = int(fm.get('characters', 0))
+        except (ValueError, TypeError):
+            pass
 
-    # Extract date
-    date_match = re.search(r'\*\*Date\*\*: (\d{4}-\d{2}-\d{2})', content)
-    if date_match:
-        metadata['date'] = date_match.group(1)
+    # Fallback to inline metadata patterns
+    if not metadata['title']:
+        title_match = re.search(r'^# (.+)$', content, re.MULTILINE)
+        if title_match:
+            metadata['title'] = title_match.group(1)
 
-    # Extract source (override hint if found in file)
-    source_match = re.search(r'\*\*Source\*\*: (\w+)', content)
-    if source_match:
-        metadata['source'] = source_match.group(1)
+    if not metadata['date']:
+        date_match = re.search(r'\*\*Date\*\*: (\d{4}-\d{2}-\d{2})', content)
+        if date_match:
+            metadata['date'] = date_match.group(1)
 
-    # Extract message count
-    msg_match = re.search(r'\*\*Messages\*\*: (\d+)', content)
-    if msg_match:
-        metadata['messages'] = int(msg_match.group(1))
+    if metadata['source'] == (source_hint.upper() if source_hint else ''):
+        source_match = re.search(r'\*\*Source\*\*: (\w+)', content)
+        if source_match:
+            metadata['source'] = source_match.group(1)
+
+    if not metadata['messages']:
+        msg_match = re.search(r'\*\*Messages\*\*: (\d+)', content)
+        if msg_match:
+            metadata['messages'] = int(msg_match.group(1))
+
+    if not metadata['chars']:
+        char_match = re.search(r'\*\*Total Characters\*\*: ([\d,]+)', content)
+        if char_match:
+            metadata['chars'] = int(char_match.group(1).replace(',', ''))
 
     # Extract activities count (Gemini)
     act_match = re.search(r'\*\*Activities\*\*: (\d+)', content)
     if act_match:
         metadata['activities'] = int(act_match.group(1))
-
-    # Extract char count
-    char_match = re.search(r'\*\*Total Characters\*\*: ([\d,]+)', content)
-    if char_match:
-        metadata['chars'] = int(char_match.group(1).replace(',', ''))
 
     # Extract first user message
     user_match = re.search(r'### USER.*?\n\n(.+?)(?=\n\n---|\n\n###)', content, re.DOTALL)
@@ -78,6 +166,7 @@ def detect_research_type(filepath: Path, source_hint: str = '') -> str:
         "έναρξη έρευνας",  # Greek: "Start research"
         "research plan for that topic",
         "let me know if you need to update it",
+        "feel free to ask me follow-up questions",  # Gemini completion pattern
     ]
 
     # ChatGPT Deep Research indicators
@@ -100,21 +189,39 @@ def detect_research_type(filepath: Path, source_hint: str = '') -> str:
         'let me search',
     ]
 
-    # Check Gemini patterns first if source suggests Gemini
-    if source_hint.lower() == 'gemini' or 'gemini' in content[:500].lower():
+    # Detect source from YAML frontmatter or inline metadata
+    source_match = re.search(r'^source:\s*(\w+)', content[:500], re.MULTILINE)
+    if not source_match:
+        source_match = re.search(r'\*\*source\*\*: (\w+)', content[:500].lower())
+    detected_source = source_match.group(1).lower() if source_match else source_hint.lower()
+
+    # Check source-specific patterns based on detected source
+    if detected_source == 'gemini':
         for pattern in gemini_research_patterns:
             if pattern in content:
                 return 'Gemini Deep Research'
 
-    # Check ChatGPT patterns
-    for pattern in chatgpt_research_patterns:
-        if pattern in content:
-            return 'ChatGPT Deep Research'
+    if detected_source == 'claude':
+        for pattern in claude_research_patterns:
+            if pattern in content:
+                return 'Claude Research Tool'
 
-    # Check Claude patterns
-    for pattern in claude_research_patterns:
-        if pattern in content:
-            return 'Claude Research Tool'
+    if detected_source == 'chatgpt':
+        for pattern in chatgpt_research_patterns:
+            if pattern in content:
+                return 'ChatGPT Deep Research'
+
+    # Fallback: check all patterns if source not detected
+    if not detected_source:
+        for pattern in gemini_research_patterns:
+            if pattern in content:
+                return 'Gemini Deep Research'
+        for pattern in chatgpt_research_patterns:
+            if pattern in content:
+                return 'ChatGPT Deep Research'
+        for pattern in claude_research_patterns:
+            if pattern in content:
+                return 'Claude Research Tool'
 
     # Check for research-heavy content by topic
     if 'research' in content and ('sources' in content or 'studies' in content or 'findings' in content):
@@ -156,7 +263,18 @@ def find_research_conversations(output_dir: Path, source_name: str = '') -> list
         content = md_file.read_text(encoding='utf-8').lower()
 
         if re.search(combined_pattern, content):
+            # Check exclusion patterns first
+            if is_excluded_content(md_file):
+                continue
+            
             metadata = extract_metadata_from_md(md_file, source_name)
+            
+            # Filter out very small files (likely not real research)
+            # Exception: files with file links (ChatGPT returns {{file:...}})
+            has_file_link = '{{file:' in content or 'artifacts created' in content
+            if metadata['chars'] < MIN_RESEARCH_SIZE and not has_file_link:
+                continue
+            
             metadata['research_type'] = detect_research_type(md_file, source_name)
             research_convs.append(metadata)
 
