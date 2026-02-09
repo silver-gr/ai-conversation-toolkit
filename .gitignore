@@ -21,6 +21,9 @@ claude_cache.db*
 *.db-shm
 *.db-wal
 
+# Node
+node_modules/
+
 # Generated outputs
 output/
 
