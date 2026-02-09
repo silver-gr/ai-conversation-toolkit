@@ -1,0 +1,1082 @@
+[
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [
+        "English"
+      ],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [
+        "information synthesis",
+        "pattern recognition"
+      ],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [
+        "neuroscience",
+        "psychology",
+        "behavioral science",
+        "happiness research",
+        "dopamine/serotonin systems"
+      ],
+      "entertainment": [
+        "educational YouTube videos"
+      ],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": [
+        "understanding neuroscience concepts",
+        "synthesizing information from comments"
+      ]
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [
+        "ChatGPT",
+        "YouTube"
+      ],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [
+        "values understanding over surface knowledge",
+        "interested in evidence-based approaches to wellbeing"
+      ],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Requesting summary of YouTube comments about dopamine vs serotonin and happiness",
+      "emotional_tone": "Neutral, curious, information-seeking",
+      "biographical_richness": "minimal"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20230516_dopamine-serotonin-happiness-debate.md",
+      "source": "chatgpt",
+      "conversation_date": "2023-05-16",
+      "extracted_at": "2025-12-16T19:05:34.640599",
+      "content_length": 13154
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [
+        "Greek"
+      ],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [
+        "Fitness training",
+        "Weight training/resistance exercise interest"
+      ],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [
+        "Gym/weight training",
+        "Back development exercises"
+      ],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [
+        "Learning proper exercise technique"
+      ],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": [
+        "Proper form guidance for weight training exercise"
+      ]
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [
+        "Values proper form/technique in fitness",
+        "Self-improvement oriented"
+      ],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Exercise technique instruction for wide grip seated cable row",
+      "emotional_tone": "Neutral, information-seeking",
+      "biographical_richness": "minimal"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20241203_wide-grip-seated-row.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-12-03",
+      "extracted_at": "2025-12-16T19:05:20.402038",
+      "content_length": 2091
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [
+        "Interested in business model analysis",
+        "Appears to be involved with or researching Psyence and X3lixi projects",
+        "Shows strategic/entrepreneurial thinking patterns"
+      ],
+      "projects_mentioned": [
+        "Psyence - mental health and spirituality initiative",
+        "X3lixi - personal development and digital content business"
+      ],
+      "skills_demonstrated": [
+        "Business analysis",
+        "Strategic thinking",
+        "Understanding of revenue models and growth strategies"
+      ],
+      "business_ventures": [
+        "Psyence (mental health, spirituality, personal development)",
+        "X3lixi (personal development, digital content, freelance services)"
+      ],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [
+        "Mental health and spirituality frameworks",
+        "Business model development",
+        "Growth strategy analysis",
+        "Mindfulness and meditation",
+        "Personal development methodologies"
+      ],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [
+        "Understanding and potentially developing Psyence's business model",
+        "Comparing different growth strategies for digital wellness businesses"
+      ],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [
+        "Clarifying the purpose/mission/scope of Psyence",
+        "Understanding revenue models for wellness-focused businesses"
+      ],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": [
+        "Business model analysis",
+        "Strategic comparison between two ventures"
+      ]
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [
+        "ChatGPT for business analysis"
+      ],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [
+        "Interest in mental health accessibility",
+        "Value for spirituality integrated with science",
+        "Appreciation for community-driven initiatives",
+        "Interest in democratizing mental health resources"
+      ],
+      "philosophical": [
+        "Interest in non-dogmatic spirituality",
+        "Balance between science and spiritual practices"
+      ],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Analyzing business models and growth strategies for Psyence and X3lixi, two ventures focused on mental health, spirituality, and personal development",
+      "emotional_tone": "Analytical, methodical, business-focused, information-seeking",
+      "biographical_richness": "minimal"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250106_psyence-purpose-inquiry.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-01-06",
+      "extracted_at": "2025-12-16T19:05:28.062863",
+      "content_length": 17105
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [
+        "Greek"
+      ],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [
+        "interested in exercise/fitness",
+        "tracks sleep patterns",
+        "nutrition awareness"
+      ],
+      "mental_health": [
+        "stress reduction practices",
+        "emotional journaling",
+        "meditation practice"
+      ],
+      "sleep_patterns": [
+        "tracks sleep as part of health management"
+      ],
+      "nutrition_diet": [
+        "takes dietary supplements",
+        "interested in nutrition",
+        "tracks diet/meals"
+      ],
+      "substances": [
+        "caffeine consumption tracked",
+        "alcohol consumption tracked"
+      ],
+      "medications": [
+        "Omega-3 supplements",
+        "vitamins",
+        "aniracetam (nootropic)",
+        "ALCAR (Acetyl-L-Carnitine)"
+      ]
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [
+        "family interactions tracked"
+      ],
+      "social": [
+        "friends interactions tracked",
+        "social activities tracked"
+      ],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [
+        "cooking",
+        "reading",
+        "movies",
+        "shopping"
+      ],
+      "intellectual": [
+        "self-improvement",
+        "productivity optimization"
+      ],
+      "entertainment": [
+        "movies",
+        "reading"
+      ],
+      "creative": [
+        "cooking"
+      ]
+    },
+    "goals": {
+      "short_term": [
+        "daily habit building",
+        "to-do list management"
+      ],
+      "long_term": [
+        "self-improvement",
+        "goal achievement"
+      ],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [
+        "daily habits tracked",
+        "gratitude journaling",
+        "meditation",
+        "exercise",
+        "meal planning",
+        "cleaning/organization"
+      ],
+      "tools_apps": [
+        "note-taking system",
+        "to-do lists"
+      ],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [
+        "gratitude practice",
+        "self-improvement",
+        "organization",
+        "wellness"
+      ],
+      "implicit_values": [
+        "discipline",
+        "self-monitoring",
+        "holistic health approach",
+        "intentional living"
+      ],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "User requesting a summary of all note-taking topics",
+      "emotional_tone": "neutral, organizational",
+      "biographical_richness": "high"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20241219_λίστα-θεμάτων-σημειώσεων.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-12-19",
+      "extracted_at": "2025-12-16T19:05:22.455251",
+      "content_length": 1378
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [
+        "seeking information about benzodiazepine tapering",
+        "currently using or has used benzodiazepines",
+        "dealing with benzodiazepine dependence or prescribed use"
+      ],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [
+        "benzodiazepine use (current or recent)",
+        "researching research chemical benzodiazepines",
+        "specifically interested in norflurazepam",
+        "aware of Reddit drug communities"
+      ],
+      "medications": [
+        "benzodiazepines (current or recent use)",
+        "interested in norflurazepam for tapering purposes"
+      ]
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [
+        "research chemicals",
+        "pharmacology"
+      ],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [
+        "tapering off benzodiazepines"
+      ],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [
+        "benzodiazepine dependence or need to discontinue use",
+        "seeking alternative tapering methods"
+      ],
+      "recurring_patterns": [],
+      "blockers": [
+        "possibly unable or unwilling to use standard medical tapering approach"
+      ],
+      "seeking_help_for": [
+        "advice on using research chemicals for benzodiazepine tapering",
+        "information about norflurazepam specifically"
+      ]
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [
+        "Reddit (uses for drug research)"
+      ],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [
+        "self-directed approach to health problems",
+        "willingness to use unapproved/unregulated substances",
+        "preference for peer information over medical guidance"
+      ],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Seeking advice on using research chemical benzodiazepines (specifically norflurazepam) for tapering off benzodiazepines",
+      "emotional_tone": "matter-of-fact, persistent despite warnings, focused on specific goal",
+      "biographical_richness": "medium"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20241126_benzodiazepine-tapering-advice.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-11-26",
+      "extracted_at": "2025-12-16T19:05:27.609535",
+      "content_length": 4998
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [
+        "Greek (native or fluent speaker)"
+      ],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [
+        "Currently a smoker",
+        "Actively attempting to quit smoking",
+        "Seeking strategies for smoking cessation"
+      ],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [
+        "Quit smoking successfully"
+      ],
+      "long_term": [],
+      "dreams": [],
+      "fears": [
+        "Concern about failing to quit smoking (implied by asking for success strategies)"
+      ]
+    },
+    "challenges": {
+      "current_problems": [
+        "Nicotine addiction/smoking habit"
+      ],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": [
+        "Strategies to make quitting smoking easier",
+        "Ways to ensure success in smoking cessation"
+      ]
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [
+        "Values health improvement",
+        "Proactive about behavior change",
+        "Seeks information and preparation before major life changes"
+      ],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Smoking cessation strategies and support",
+      "emotional_tone": "Determined, solution-focused, possibly anxious about success",
+      "biographical_richness": "low"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20240616_quit-smoking-tips-for-success.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-06-16",
+      "extracted_at": "2025-12-16T19:06:09.813738",
+      "content_length": 2183
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [
+        "Θεσσαλονίκη (Thessaloniki)"
+      ],
+      "language_indicators": [
+        "Greek"
+      ],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [
+        "geography/urban information about Thessaloniki"
+      ],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Query about Panorama, Thessaloniki - a suburban area",
+      "emotional_tone": "neutral, informational query",
+      "biographical_richness": "minimal"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20241216_πανόραμα-θεσσαλονίκης-στοιχεία.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-12-16",
+      "extracted_at": "2025-12-16T19:05:59.852045",
+      "content_length": 3430
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": "minimal"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250717_sorry-i-cant-assist-with-that.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-07-17",
+      "extracted_at": "2025-12-16T19:06:35.257264",
+      "content_length": 24036
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [
+        "English (native-level fluency, technical writing)"
+      ],
+      "demographic_hints": [
+        "Tech-savvy professional",
+        "Likely 30s-40s based on 10-year digital archive",
+        "Affluent enough for Mac + Linux PC + multiple paid tools",
+        "Highly educated/organized thinker"
+      ]
+    },
+    "work": {
+      "occupation_hints": [
+        "Content creator",
+        "Researcher",
+        "Writer/knowledge worker",
+        "Possibly academic or technical writer"
+      ],
+      "projects_mentioned": [
+        "10-year digital archive consolidation",
+        "PKM system migration",
+        "Content repurposing from archive into new publishable work"
+      ],
+      "skills_demonstrated": [
+        "CLI comfortable (Python, bash)",
+        "System design thinking",
+        "Knowledge management methodologies (PARA, GTD)",
+        "Cross-platform computing (macOS/Linux)",
+        "Automation awareness (Zapier, IFTTT, Hazel, Apple Shortcuts)"
+      ],
+      "business_ventures": [],
+      "work_style": [
+        "Highly systematic",
+        "Remote/digital-first",
+        "Multi-platform user",
+        "Prefers local-first tools",
+        "Values automation",
+        "Long-term archival mindset"
+      ]
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [
+        "Reading ebooks (Calibre library)",
+        "Listening to audiobooks (Audible)",
+        "Social media curation (Reddit Saved, YouTube Saved, Instagram Saved)",
+        "Photography or visual content (local images/screenshots)",
+        "Handwritten notes (scans mentioned)"
+      ],
+      "intellectual": [
+        "Personal Knowledge Management (PKM)",
+        "Information architecture",
+        "Productivity systems (PARA, GTD)",
+        "Knowledge work optimization",
+        "Digital archiving and preservation"
+      ],
+      "entertainment": [
+        "Reddit browsing",
+        "YouTube consumption",
+        "Instagram browsing",
+        "Audiobooks",
+        "Ebooks/reading"
+      ],
+      "creative": [
+        "Content creation from research",
+        "Writing/publishing (goal to repurpose archive into content)"
+      ]
+    },
+    "goals": {
+      "short_term": [
+        "Consolidate 10 years of scattered digital resources",
+        "Implement tool recommendations within weeks",
+        "Set up automated workflows",
+        "Deduplicate and organize existing archive"
+      ],
+      "long_term": [
+        "Build sustainable knowledge management system",
+        "Repurpose archived content into publishable work",
+        "Create content from personal knowledge base",
+        "Maintain organized digital life long-term"
+      ],
+      "dreams": [
+        "Fully automated, searchable, integrated personal knowledge system",
+        "Transform consumption into creation",
+        "Never lose valuable saved content again"
+      ],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [
+        "10 years of resources scattered across platforms",
+        "Data fragmentation (Reddit, YouTube, Instagram, bookmarks, ebooks, audiobooks, images, notes)",
+        "PKM system in transition (Obsidian + legacy tools)",
+        "Lack of unified search/classification",
+        "No automation currently in place"
+      ],
+      "recurring_patterns": [
+        "Information hoarding ('saved' across multiple platforms)",
+        "Tool proliferation (many partial solutions)",
+        "Migration/consolidation attempts (bookmark migration to Raindrop mentioned)"
+      ],
+      "blockers": [
+        "No current automation setup",
+        "Unfamiliarity with tools like Syncthing, Hazel, Shortcuts",
+        "Scale of task (10 years, ~500GB)",
+        "Platform lock-in (content still within platforms)"
+      ],
+      "seeking_help_for": [
+        "Concrete tool recommendations",
+        "Step-by-step consolidation method",
+        "Automation setup guidance",
+        "Workflow design",
+        "Phased migration plan"
+      ]
+    },
+    "daily_life": {
+      "routines": [
+        "Heavy digital content consumption and saving",
+        "Multi-platform work (Mac primary, Linux secondary)",
+        "Note-taking across multiple systems (Obsidian, Workflowy, Google Keep, Docs, handwritten)"
+      ],
+      "tools_apps": [
+        "Obsidian (primary PKM)",
+        "Workflowy (legacy)",
+        "Google Keep",
+        "Google Docs",
+        "Raindrop.io (bookmark migration)",
+        "Calibre (ebook management)",
+        "Audible",
+        "Reddit",
+        "YouTube",
+        "Instagram"
+      ],
+      "living_situation": [
+        "Multi-device household (Mac + Linux PC)",
+        "Likely home office setup for knowledge work"
+      ],
+      "finances": [
+        "Budget-conscious but willing to pay for quality tools",
+        "Prefers free/open-source but accepts paid solutions",
+        "Can afford multiple devices and subscriptions"
+      ]
+    },
+    "values": {
+      "explicit_values": [
+        "Privacy (prefers local-first or E2EE)",
+        "Open source preference",
+        "Organization and systematization",
+        "Efficiency through automation",
+        "Data ownership and control"
+      ],
+      "implicit_values": [
+        "Anti-waste (wants to use saved content, not just collect)",
+        "Long-term thinking (10-year archive, sustainable systems)",
+        "Continuous improvement (migrating tools, seeking optimization)",
+        "Self-reliance (comfortable with technical solutions)",
+        "Intellectual growth through organized knowledge"
+      ],
+      "philosophical": [
+        "Information should be organized and accessible",
+        "Systems thinking approach to personal productivity",
+        "Knowledge as asset to be managed",
+        "Consumption should lead to creation"
+      ],
+      "political_social": [
+        "Privacy-conscious (tech surveillance aware)",
+        "Favors decentralized/local solutions over cloud when possible"
+      ]
+    },
+    "context": {
+      "main_topic": "Digital archive consolidation and personal knowledge management system design",
+      "emotional_tone": "Methodical, proactive, organized, solution-focused, patient but eager to implement",
+      "biographical_richness": "high"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250801_tool-recommendations-and-workflow.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-08-01",
+      "extracted_at": "2025-12-16T19:06:37.144353",
+      "content_length": 24036
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [
+        "Has ADHD (Attention-Deficit/Hyperactivity Disorder)",
+        "Experiences anxiety before events",
+        "Gets stressed when time pressure increases",
+        "Prone to time-related stress patterns"
+      ],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [
+        "Attends social events (parties)",
+        "Social obligations create stress/anxiety"
+      ],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [
+        "Complete tasks before party in 6 hours",
+        "Reduce pre-event anxiety and stress",
+        "Improve ability to prioritize tasks"
+      ],
+      "long_term": [
+        "Improve time management skills",
+        "Better manage ADHD-related challenges"
+      ],
+      "dreams": [],
+      "fears": [
+        "Not finishing important tasks on time",
+        "Last-minute rushing and stress",
+        "Being unprepared for social events"
+      ]
+    },
+    "challenges": {
+      "current_problems": [
+        "Has 6 hours to complete tasks before party",
+        "Struggling to prioritize top priority vs secondary tasks",
+        "Feeling anxious about time management"
+      ],
+      "recurring_patterns": [
+        "Gets easily distracted",
+        "Time flies by unnoticed",
+        "Leaves things to the last minute (procrastination)",
+        "Experiences anxiety and stress in hours before events",
+        "Difficulty distinguishing task priority levels"
+      ],
+      "blockers": [
+        "ADHD affecting executive function",
+        "Poor time management skills",
+        "Distractibility",
+        "Altered time perception (time flies by)"
+      ],
+      "seeking_help_for": [
+        "Guidance on defining top priority vs secondary tasks",
+        "Strategies to complete tasks efficiently",
+        "Methods to avoid last-minute stress and anxiety",
+        "Time management support for ADHD"
+      ]
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [
+        "Values being prepared and organized",
+        "Wants to reduce stress and anxiety",
+        "Seeks self-improvement in time management"
+      ],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "Seeking help with time management and task prioritization for completing pre-party tasks while managing ADHD-related challenges",
+      "emotional_tone": "Anxious, stressed, seeking reassurance and structure; somewhat self-aware about patterns but feeling overwhelmed",
+      "biographical_richness": "medium"
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250510_prioritization-time-management-guide.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-05-10",
+      "extracted_at": "2025-12-16T19:06:10.022463",
+      "content_length": 3186
+    }
+  }
+]

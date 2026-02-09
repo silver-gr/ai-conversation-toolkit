@@ -1,0 +1,99 @@
+Using cache with 673 existing extractions
+Using provider: gemini (model: gemini-2.5-flash)
+Discovering conversation files...
+Found 2046 conversation files
+Retry 1: Gemini CLI error: Loaded cached credentials.
+[STARTUP] StartupProfiler.flush() called with 9 phases
+[STARTUP] Recording metric for phase: cli_startup duration: 544.2973340000001
+[STARTUP] Recording metric for phase: load_settings duration: 1.0983750000000327
+[STARTUP] Recording metric for phase: migrate_settings duration: 
+2.7260000000001128
+[STARTUP] Recording metric for phase: parse_arguments duration: 
+11.07116700000006
+[STARTUP] Recording metric for phase: load_cli_config duration: 
+25.88716700000009
+[STARTUP] Recording metric for phase: initialize_app duration: 497.055292
+[STARTUP] Recording metric for phase: authenticate duration: 494.25691600000005
+[STARTUP] Recording metric for phase: discover_tools duration: 6.187791999999945
+[STARTUP] Recording metric for phase: initialize_mcp_clients duration: 
+0.24649999999996908
+Attempt 1 failed: You have exhausted your capacity on this model. Your quota 
+will reset after 0s.. Retrying after 274.64903400000003ms...
+Attempt 2 failed: You have exhausted your capacity on this model.. Retrying 
+after 10000ms...
+Error when talking to Gemini API Full report available at: 
+/var/folders/6j/pnsxn09x5ss612yrtx98f6ph0000gn/T/gemini-client-error-Turn.run-se
+ndMessageStream-2025-12-16T18-48-58-665Z.json
+{
+  "error": {
+    "type": "Error",
+    "message": "",
+    "code": 429
+  }
+}
+
+Retry 1: Gemini CLI error: Loaded cached credentials.
+[STARTUP] StartupProfiler.flush() called with 9 phases
+[STARTUP] Recording metric for phase: cli_startup duration: 782.0434159999998
+[STARTUP] Recording metric for phase: load_settings duration: 3.050457999999935
+[STARTUP] Recording metric for phase: migrate_settings duration: 
+0.5892919999998867
+[STARTUP] Recording metric for phase: parse_arguments duration: 
+9.181708000000071
+[STARTUP] Recording metric for phase: load_cli_config duration: 
+53.902458000000024
+[STARTUP] Recording metric for phase: initialize_app duration: 707.1426249999997
+[STARTUP] Recording metric for phase: authenticate duration: 703.1992499999999
+[STARTUP] Recording metric for phase: discover_tools duration: 8.461250000000291
+[STARTUP] Recording metric for phase: initialize_mcp_clients duration: 
+0.7062909999999647
+Attempt 1 failed: You have exhausted your capacity on this model. Your quota 
+will reset after 0s.. Retrying after 480.27765500000004ms...
+Attempt 2 failed: You have exhausted your capacity on this model.. Retrying 
+after 10000ms...
+Error when talking to Gemini API Full report available at: 
+/var/folders/6j/pnsxn09x5ss612yrtx98f6ph0000gn/T/gemini-client-error-Turn.run-se
+ndMessageStream-2025-12-16T18-57-30-711Z.json
+{
+  "error": {
+    "type": "Error",
+    "message": "",
+    "code": 1
+  }
+}
+
+Retry 1: No valid JSON found in response
+Retry 1: Gemini CLI error: Loaded cached credentials.
+[STARTUP] StartupProfiler.flush() called with 9 phases
+[STARTUP] Recording metric for phase: cli_startup duration: 558.2701669999999
+[STARTUP] Recording metric for phase: load_settings duration: 1.513249999999971
+[STARTUP] Recording metric for phase: migrate_settings duration: 
+0.5654580000000351
+[STARTUP] Recording metric for phase: parse_arguments duration: 
+12.176625000000058
+[STARTUP] Recording metric for phase: load_cli_config duration: 
+29.32916699999987
+[STARTUP] Recording metric for phase: initialize_app duration: 510.2027089999999
+[STARTUP] Recording metric for phase: authenticate duration: 506.79949999999985
+[STARTUP] Recording metric for phase: discover_tools duration: 
+2.6374170000001413
+[STARTUP] Recording metric for phase: initialize_mcp_clients duration: 
+0.3677090000001044
+Attempt 1 failed: You have exhausted your capacity on this model. Your quota 
+will reset after 0s.. Retrying after 24.982759ms...
+Attempt 2 failed: You have exhausted your capacity on this model. Your quota 
+will reset after 0s.. Retrying after 700.587055ms...
+Error when talking to Gemini API Full report available at: 
+/var/folders/6j/pnsxn09x5ss612yrtx98f6ph0000gn/T/gemini-client-error-Turn.run-se
+ndMessageStream-2025-12-16T19-01-03-172Z.json
+{
+  "error": {
+    "type": "Error",
+    "message": "",
+    "code": 1
+  }
+}
+
+Retry 1: No valid JSON found in response
+Batch error: 
+Batch error: 

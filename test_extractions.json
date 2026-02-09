@@ -1,0 +1,1422 @@
+[
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250925_accountability-buddies-in-habits.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-09-25",
+      "extracted_at": "2025-12-16T18:58:41.403401",
+      "content_length": 2143
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251030_fix-macos-path-issue.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-10-30",
+      "extracted_at": "2025-12-16T18:58:44.118829",
+      "content_length": 4437
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251106_make-android-app-icon.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-11-06",
+      "extracted_at": "2025-12-16T18:58:40.868276",
+      "content_length": 2819
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250615_diazepam-to-alprazolam-conversion.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-06-15",
+      "extracted_at": "2025-12-16T18:58:43.406691",
+      "content_length": 1863
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251024_executive-summary-personalized-nac-alter.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-10-24",
+      "extracted_at": "2025-12-16T18:58:53.071959",
+      "content_length": 24036
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250523_expected-submissive-behavior.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-05-23",
+      "extracted_at": "2025-12-16T18:59:19.407020",
+      "content_length": 8419
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20240831_κρίση-αναπαραγωγιμότητας-επιστήμης.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-08-31",
+      "extracted_at": "2025-12-16T18:59:13.775108",
+      "content_length": 2388
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/gemini/conversations/20250906_a-video-was-shot-with-pixel-8-pro-in-slo.md",
+      "source": "gemini",
+      "conversation_date": "2025-09-06",
+      "extracted_at": "2025-12-16T18:59:17.490106",
+      "content_length": 3842
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20241023_popular-self-help-categories.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-10-23",
+      "extracted_at": "2025-12-16T18:59:32.535008",
+      "content_length": 22143
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251204_supplement-stack-update.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-12-04",
+      "extracted_at": "2025-12-16T18:59:38.368695",
+      "content_length": 24036
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251112_morning-sun-benefits.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-11-12",
+      "extracted_at": "2025-12-16T19:00:02.880625",
+      "content_length": 7600
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251024_adhd-non-pharma-interventions.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-10-24",
+      "extracted_at": "2025-12-16T19:00:08.530661",
+      "content_length": 24036
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20240727_conversation-overview-guide.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-07-27",
+      "extracted_at": "2025-12-16T19:00:00.398113",
+      "content_length": 3036
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250806_mac-mini-to-speakers-setup.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-08-06",
+      "extracted_at": "2025-12-16T19:00:08.149296",
+      "content_length": 21987
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250616_ναρκισσισμός-στο-models_1.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-06-16",
+      "extracted_at": "2025-12-16T19:00:00.698932",
+      "content_length": 1676
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251105_llms-using-nextjs-react.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-11-05",
+      "extracted_at": "2025-12-16T19:00:30.719187",
+      "content_length": 3170
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20240924_benefits-of-nac-supplementation.md",
+      "source": "chatgpt",
+      "conversation_date": "2024-09-24",
+      "extracted_at": "2025-12-16T19:00:36.617120",
+      "content_length": 22038
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250625_διαχείριση-σεξουαλικής-διέγερσης.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-06-25",
+      "extracted_at": "2025-12-16T19:00:39.155414",
+      "content_length": 4470
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/claude-full/conversations/20250702_ai-subreddit-community-discovery.md",
+      "source": "claude",
+      "conversation_date": "2025-07-02",
+      "extracted_at": "2025-12-16T19:00:35.439617",
+      "content_length": 14772
+    }
+  },
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20251025_google-takeout-insights.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-10-25",
+      "extracted_at": "2025-12-16T19:00:38.188773",
+      "content_length": 8564
+    }
+  }
+]

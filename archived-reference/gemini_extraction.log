@@ -1,0 +1,30 @@
+Using cache with 406 existing extractions
+Discovering conversation files...
+Found 302 conversation files
+JSON parse error: Expecting ',' delimiter: line 20 column 48 (char 1803)
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+Extraction error: No valid JSON found in response
+  Extracting biographical data... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+
+     Extraction Statistics     
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┓
+┃ Metric              ┃ Value ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
+│ Total conversations │ 302   │
+│ Cache hits          │ 99    │
+│ Cache misses        │ 203   │
+│ Cache hit rate      │ 32.8% │
+│ High richness       │ 7     │
+│ Medium richness     │ 37    │
+│ Low richness        │ 56    │
+│ Minimal richness    │ 202   │
+└─────────────────────┴───────┘
+
+By Source:
+  gemini: 302

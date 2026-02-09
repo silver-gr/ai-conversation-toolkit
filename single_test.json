@@ -1,0 +1,73 @@
+[
+  {
+    "identity": {
+      "name_mentions": [],
+      "location_mentions": [],
+      "language_indicators": [],
+      "demographic_hints": []
+    },
+    "work": {
+      "occupation_hints": [],
+      "projects_mentioned": [],
+      "skills_demonstrated": [],
+      "business_ventures": [],
+      "work_style": []
+    },
+    "health": {
+      "physical_health": [],
+      "mental_health": [],
+      "sleep_patterns": [],
+      "nutrition_diet": [],
+      "substances": [],
+      "medications": []
+    },
+    "relationships": {
+      "romantic": [],
+      "family": [],
+      "social": [],
+      "sexuality": []
+    },
+    "interests": {
+      "hobbies": [],
+      "intellectual": [],
+      "entertainment": [],
+      "creative": []
+    },
+    "goals": {
+      "short_term": [],
+      "long_term": [],
+      "dreams": [],
+      "fears": []
+    },
+    "challenges": {
+      "current_problems": [],
+      "recurring_patterns": [],
+      "blockers": [],
+      "seeking_help_for": []
+    },
+    "daily_life": {
+      "routines": [],
+      "tools_apps": [],
+      "living_situation": [],
+      "finances": []
+    },
+    "values": {
+      "explicit_values": [],
+      "implicit_values": [],
+      "philosophical": [],
+      "political_social": []
+    },
+    "context": {
+      "main_topic": "",
+      "emotional_tone": "",
+      "biographical_richness": ""
+    },
+    "_metadata": {
+      "file_path": "output/chatgpt-full/conversations/20250701_χημεία-συναισθημάτων-και-ισορροπία.md",
+      "source": "chatgpt",
+      "conversation_date": "2025-07-01",
+      "extracted_at": "2025-12-16T19:01:46.303267",
+      "content_length": 3329
+    }
+  }
+]
