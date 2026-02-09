@@ -5,11 +5,19 @@ Converts both formats to a normalized structure for processing.
 """
 
 import json
+import re
 import ijson
 from pathlib import Path
 from datetime import datetime
 from typing import Generator, Optional, Any
 from dataclasses import dataclass, field
+
+
+def slugify(text: str, max_len: int = 50) -> str:
+    """Convert text to a valid filename slug."""
+    slug = re.sub(r'[^\w\s-]', '', text.lower())
+    slug = re.sub(r'[-\s]+', '-', slug).strip('-')
+    return slug[:max_len]
 
 
 @dataclass

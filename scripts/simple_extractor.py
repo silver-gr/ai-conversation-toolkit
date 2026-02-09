@@ -7,38 +7,18 @@ Converts ChatGPT and Claude exports to readable markdown with FULL content.
 import json
 import os
 import re
+import sys
 from pathlib import Path
 from datetime import datetime
 from typing import Generator
 from collections import defaultdict
 import hashlib
 
+# Support running from different directories
+sys.path.insert(0, str(Path(__file__).parent))
 
-def slugify(text: str, max_len: int = 50) -> str:
-    """Convert text to a valid filename slug."""
-    slug = re.sub(r'[^\w\s-]', '', text.lower())
-    slug = re.sub(r'[-\s]+', '-', slug).strip('-')
-    return slug[:max_len]
-
-
-def parse_timestamp(ts) -> datetime | None:
-    """Parse various timestamp formats."""
-    if not ts:
-        return None
-    if isinstance(ts, (int, float)):
-        try:
-            return datetime.fromtimestamp(ts)
-        except (ValueError, OSError):
-            return None
-    if isinstance(ts, str):
-        try:
-            ts = ts.replace('Z', '+00:00')
-            if '+' in ts:
-                ts = ts.split('+')[0]
-            return datetime.fromisoformat(ts)
-        except ValueError:
-            return None
-    return None
+from parser import slugify, parse_timestamp
+from import_logger import ImportLogger
 
 
 # =============================================================================
@@ -181,6 +161,33 @@ def parse_chatgpt_export(filepath: Path) -> Generator[dict, None, None]:
 # MARKDOWN GENERATOR
 # =============================================================================
 
+def _escape_yaml_string(s: str) -> str:
+    """Escape a string for safe YAML output (double-quoted scalar)."""
+    if not s:
+        return '""'
+    # Escape backslashes first, then double quotes
+    s = s.replace('\\', '\\\\').replace('"', '\\"')
+    return f'"{s}"'
+
+
+def _detect_has_code(messages: list[dict]) -> bool:
+    """Check if any message contains code fences."""
+    for msg in messages:
+        if '```' in msg.get('content', ''):
+            return True
+    return False
+
+
+def _extract_model(conv: dict) -> str | None:
+    """Extract model from ChatGPT metadata (first assistant message's model_slug)."""
+    if conv.get('source') != 'chatgpt':
+        return None
+    for msg in conv.get('messages', []):
+        if msg.get('role') == 'assistant' and msg.get('model'):
+            return msg['model']
+    return None
+
+
 def conversation_to_markdown(conv: dict, include_full_content: bool = True) -> str:
     """Convert a conversation to markdown with FULL content."""
     lines = []
@@ -189,27 +196,41 @@ def conversation_to_markdown(conv: dict, include_full_content: bool = True) -> s
     created = conv['created_at']
     messages = conv['messages']
 
+    # Calculate metadata values
+    total_chars = sum(len(m['content']) for m in messages)
+    has_code = _detect_has_code(messages)
+    topics = extract_topics(messages)
+    model = _extract_model(conv)
+    source = conv['source'].lower()
+
+    # YAML frontmatter
+    lines.append("---")
+    lines.append("type: conversation")
+    lines.append(f"title: {_escape_yaml_string(title)}")
+    if created:
+        lines.append(f"date: {created.strftime('%Y-%m-%dT%H:%M:%S')}")
+    else:
+        lines.append("date: null")
+    lines.append(f"source: {source}")
+    if model:
+        lines.append(f"model: {model}")
+    else:
+        lines.append("model: null")
+    lines.append(f"messages: {len(messages)}")
+    lines.append(f"characters: {total_chars}")
+    lines.append(f"has_code: {'true' if has_code else 'false'}")
+    if topics:
+        lines.append("topics:")
+        for topic in topics[:10]:
+            lines.append(f"  - {topic}")
+    else:
+        lines.append("topics: []")
+    lines.append("research_type: null")
+    lines.append("---")
+    lines.append("")
+
     # Header
     lines.append(f"# {title}")
-    lines.append("")
-
-    # Metadata
-    lines.append("## Metadata")
-    lines.append("")
-    if created:
-        lines.append(f"- **Date**: {created.strftime('%Y-%m-%d %H:%M')}")
-    lines.append(f"- **Source**: {conv['source'].upper()}")
-    lines.append(f"- **Messages**: {len(messages)}")
-
-    # Calculate total chars
-    total_chars = sum(len(m['content']) for m in messages)
-    lines.append(f"- **Total Characters**: {total_chars:,}")
-
-    if conv.get('summary'):
-        lines.append(f"- **Summary**: {conv['summary']}")
-
-    lines.append("")
-    lines.append("---")
     lines.append("")
 
     # Full Conversation
@@ -287,13 +308,32 @@ def process_export(
     input_path: Path,
     output_dir: Path,
     max_conversations: int = None,
-    full_content: bool = True
-):
-    """Process an export file and create markdown files."""
+    full_content: bool = True,
+    incremental: bool = False,
+    imported_ids: set[str] = None
+) -> dict:
+    """Process an export file and create markdown files.
+    
+    Args:
+        input_path: Path to the conversations.json file
+        output_dir: Directory to write markdown files
+        max_conversations: Maximum number of conversations to process
+        full_content: Include full content or truncate
+        incremental: Skip already imported conversations
+        imported_ids: Set of conversation IDs to skip (from previous imports)
+    
+    Returns:
+        dict with stats including:
+        - processed: number of conversations written
+        - skipped: number of conversations skipped (incremental mode)
+        - total: total conversations in export
+        - new_ids: list of newly imported conversation IDs
+        - source: detected source ('chatgpt' or 'claude')
+    """
 
     # Detect format
     with open(input_path, 'r', encoding='utf-8') as f:
-        sample = f.read(2000)
+        sample = f.read(5000)  # Increased from 2000 to catch chat_messages in Claude exports
 
     if '"chat_messages"' in sample:
         source = 'claude'
@@ -304,6 +344,10 @@ def process_export(
 
     print(f"Detected format: {source.upper()}")
 
+    # Initialize imported_ids set
+    if imported_ids is None:
+        imported_ids = set()
+
     # Create output directory
     output_dir.mkdir(parents=True, exist_ok=True)
     conv_dir = output_dir / 'conversations'
@@ -313,14 +357,25 @@ def process_export(
     stats = {
         'total': 0,
         'processed': 0,
+        'skipped': 0,
         'total_messages': 0,
         'total_chars': 0,
+        'new_ids': [],
+        'source': source,
     }
 
     summaries = []
 
     for conv in parser(input_path):
         stats['total'] += 1
+        
+        # Get conversation ID (both parsers store it in 'id' key)
+        conv_id = conv.get('id', '')
+        
+        # Skip if already imported (incremental mode)
+        if incremental and conv_id in imported_ids:
+            stats['skipped'] += 1
+            continue
 
         if max_conversations and stats['processed'] >= max_conversations:
             break
@@ -348,6 +403,7 @@ def process_export(
         char_count = sum(len(m['content']) for m in conv['messages'])
         stats['total_messages'] += msg_count
         stats['total_chars'] += char_count
+        stats['new_ids'].append(conv_id)
 
         # Store summary
         summaries.append({
@@ -362,8 +418,9 @@ def process_export(
         if stats['processed'] % 50 == 0:
             print(f"  Processed {stats['processed']} conversations...")
 
-    # Create index file
-    index_path = output_dir / 'INDEX.md'
+    # Create index file with timestamp (preserves history)
+    index_timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    index_path = output_dir / f'INDEX_{index_timestamp}.md'
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write(f"# {source.upper()} Conversation Export\n\n")
         f.write(f"*Extracted: {datetime.now().strftime('%Y-%m-%d %H:%M')}*\n\n")
@@ -372,6 +429,8 @@ def process_export(
         f.write(f"- **Total Messages**: {stats['total_messages']:,}\n")
         f.write(f"- **Total Characters**: {stats['total_chars']:,}\n")
         f.write(f"- **Avg Messages/Conv**: {stats['total_messages'] // max(stats['processed'], 1)}\n")
+        if incremental and stats['skipped'] > 0:
+            f.write(f"- **Skipped (existing)**: {stats['skipped']}\n")
         f.write("\n---\n\n")
 
         f.write("## Conversations\n\n")
@@ -388,6 +447,8 @@ def process_export(
 
     print(f"\nComplete!")
     print(f"  Processed: {stats['processed']} conversations")
+    if incremental:
+        print(f"  Skipped: {stats['skipped']} existing conversations")
     print(f"  Messages: {stats['total_messages']:,}")
     print(f"  Characters: {stats['total_chars']:,}")
     print(f"  Output: {output_dir}")
@@ -403,6 +464,10 @@ def main():
     parser.add_argument('--output', '-o', default='output', help='Output directory')
     parser.add_argument('--max', '-m', type=int, help='Maximum conversations to process')
     parser.add_argument('--summary', action='store_true', help='Truncate long messages')
+    parser.add_argument('--incremental', '-i', action='store_true',
+                       help='Skip conversations that were already imported')
+    parser.add_argument('--imports-dir', default='imports',
+                       help='Directory containing import logs (default: imports)')
 
     args = parser.parse_args()
 
@@ -412,6 +477,20 @@ def main():
         return 1
 
     output_dir = Path(args.output)
+    
+    # Load previously imported IDs if incremental mode
+    imported_ids = set()
+    if args.incremental:
+        logger = ImportLogger(Path(args.imports_dir))
+        
+        # Detect source to get correct imported IDs
+        with open(input_path, 'r', encoding='utf-8') as f:
+            sample = f.read(5000)  # Increased from 2000 to catch chat_messages in Claude exports
+        source = 'claude' if '"chat_messages"' in sample else 'chatgpt'
+        
+        imported_ids = logger.get_imported_ids(source)
+        if imported_ids:
+            print(f"Incremental mode: {len(imported_ids)} previously imported {source} conversations will be skipped")
 
     print("=" * 60)
     print("Simple Conversation Extractor")
@@ -420,13 +499,17 @@ def main():
     print(f"Output: {output_dir}")
     if args.max:
         print(f"Max conversations: {args.max}")
+    if args.incremental:
+        print(f"Mode: Incremental (skip existing)")
     print()
 
-    process_export(
+    stats = process_export(
         input_path,
         output_dir,
         max_conversations=args.max,
-        full_content=not args.summary
+        full_content=not args.summary,
+        incremental=args.incremental,
+        imported_ids=imported_ids
     )
 
     return 0

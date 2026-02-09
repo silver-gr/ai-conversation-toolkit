@@ -10,30 +10,17 @@ Each entry is a standalone query+response pair.
 import json
 import re
 import html
+import sys
 from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Generator
 from collections import defaultdict
 
+# Support running from different directories
+sys.path.insert(0, str(Path(__file__).parent))
 
-def slugify(text: str, max_len: int = 50) -> str:
-    """Convert text to a valid filename slug."""
-    slug = re.sub(r'[^\w\s-]', '', text.lower())
-    slug = re.sub(r'[-\s]+', '-', slug).strip('-')
-    return slug[:max_len]
-
-
-def parse_timestamp(ts: str) -> datetime | None:
-    """Parse ISO timestamp."""
-    if not ts:
-        return None
-    try:
-        ts = ts.replace('Z', '+00:00')
-        if '+' in ts:
-            ts = ts.split('+')[0]
-        return datetime.fromisoformat(ts)
-    except ValueError:
-        return None
+from parser import slugify, parse_timestamp
+from import_logger import ImportLogger
 
 
 def strip_html(html_content: str) -> str:
@@ -210,6 +197,56 @@ def group_into_conversations(
     return conversations
 
 
+def _escape_yaml_string(s: str) -> str:
+    """Escape a string for safe YAML output (double-quoted scalar)."""
+    if not s:
+        return '""'
+    s = s.replace('\\', '\\\\').replace('"', '\\"')
+    return f'"{s}"'
+
+
+def _detect_has_code_gemini(activities: list[dict]) -> bool:
+    """Check if any activity contains code fences."""
+    for act in activities:
+        if '```' in act.get('query', '') or '```' in act.get('response', '') or '```' in act.get('canvas_content', ''):
+            return True
+    return False
+
+
+def _extract_topics_gemini(activities: list[dict]) -> list[str]:
+    """Extract simple topic keywords from Gemini activities."""
+    stop_words = {
+        'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
+        'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
+        'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
+        'could', 'should', 'may', 'might', 'must', 'shall', 'can', 'need',
+        'this', 'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we',
+        'they', 'what', 'which', 'who', 'when', 'where', 'why', 'how', 'all',
+        'each', 'every', 'both', 'few', 'more', 'most', 'other', 'some', 'such',
+        'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very',
+        'just', 'also', 'now', 'here', 'there', 'then', 'if', 'my', 'your',
+        'me', 'like', 'want', 'think', 'know', 'make', 'get', 'go', 'see',
+        'use', 'using', 'used', 'let', 'please', 'thanks', 'thank', 'help',
+        'about', 'into', 'over', 'after', 'before', 'between', 'under', 'again',
+    }
+
+    # Get text from first few activities
+    text = ' '.join(
+        (a['query'][:500] + ' ' + a['response'][:500])
+        for a in activities[:5]
+    )
+
+    words = re.findall(r'\b[a-zA-Z]{4,15}\b', text.lower())
+
+    word_counts = defaultdict(int)
+    for word in words:
+        if word not in stop_words:
+            word_counts[word] += 1
+
+    sorted_words = sorted(word_counts.items(), key=lambda x: x[1], reverse=True)
+    return [word for word, count in sorted_words[:10] if count >= 1]
+
+
 def activity_to_markdown(conv: dict) -> str:
     """Convert a conversation/activity group to markdown."""
     lines = []
@@ -218,27 +255,39 @@ def activity_to_markdown(conv: dict) -> str:
     created = conv['created_at']
     activities = conv['activities']
 
-    # Header
-    lines.append(f"# {title}")
-    lines.append("")
-
-    # Metadata
-    lines.append("## Metadata")
-    lines.append("")
-    if created:
-        lines.append(f"- **Date**: {created.strftime('%Y-%m-%d %H:%M')}")
-    lines.append(f"- **Source**: GEMINI")
-    lines.append(f"- **Activities**: {len(activities)}")
-
-    # Calculate stats
+    # Calculate metadata values
     total_chars = sum(
         len(a['query']) + len(a['response']) + len(a['canvas_content'])
         for a in activities
     )
-    lines.append(f"- **Total Characters**: {total_chars:,}")
+    has_code = _detect_has_code_gemini(activities)
+    topics = _extract_topics_gemini(activities)
 
-    lines.append("")
+    # YAML frontmatter
     lines.append("---")
+    lines.append("type: conversation")
+    lines.append(f"title: {_escape_yaml_string(title)}")
+    if created:
+        lines.append(f"date: {created.strftime('%Y-%m-%dT%H:%M:%S')}")
+    else:
+        lines.append("date: null")
+    lines.append("source: gemini")
+    lines.append("model: null")
+    lines.append(f"messages: {len(activities)}")
+    lines.append(f"characters: {total_chars}")
+    lines.append(f"has_code: {'true' if has_code else 'false'}")
+    if topics:
+        lines.append("topics:")
+        for topic in topics[:10]:
+            lines.append(f"  - {topic}")
+    else:
+        lines.append("topics: []")
+    lines.append("research_type: null")
+    lines.append("---")
+    lines.append("")
+
+    # Header
+    lines.append(f"# {title}")
     lines.append("")
 
     # Content
@@ -313,11 +362,34 @@ def process_gemini_export(
     input_path: Path,
     output_dir: Path,
     max_conversations: int = None,
-    no_grouping: bool = False
-):
-    """Process Gemini export and create markdown files."""
+    no_grouping: bool = False,
+    incremental: bool = False,
+    imported_ids: set[str] = None
+) -> dict:
+    """Process Gemini export and create markdown files.
+    
+    Args:
+        input_path: Path to the Gemini activity JSON file
+        output_dir: Directory to write markdown files
+        max_conversations: Maximum number of conversations to process
+        no_grouping: Keep each activity separate (no session grouping)
+        incremental: Skip already imported conversations
+        imported_ids: Set of conversation IDs to skip (from previous imports)
+    
+    Returns:
+        dict with stats including:
+        - processed: number of conversations written
+        - skipped: number of conversations skipped (incremental mode)
+        - total: total conversations
+        - new_ids: list of newly imported conversation IDs
+        - source: 'gemini'
+    """
 
     print(f"Processing Gemini export: {input_path}")
+
+    # Initialize imported_ids set
+    if imported_ids is None:
+        imported_ids = set()
 
     # Create output directory
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -362,13 +434,24 @@ def process_gemini_export(
     stats = {
         'total': len(conversations),
         'processed': 0,
+        'skipped': 0,
         'total_activities': len(activities),
         'total_chars': 0,
+        'new_ids': [],
+        'source': 'gemini',
     }
 
     summaries = []
 
     for conv in conversations:
+        # Get conversation ID (timestamp-based)
+        conv_id = conv.get('id', '')
+        
+        # Skip if already imported (incremental mode)
+        if incremental and conv_id in imported_ids:
+            stats['skipped'] += 1
+            continue
+
         if max_conversations and stats['processed'] >= max_conversations:
             break
 
@@ -396,6 +479,7 @@ def process_gemini_export(
         )
         stats['processed'] += 1
         stats['total_chars'] += char_count
+        stats['new_ids'].append(conv_id)
 
         summaries.append({
             'title': conv['title'],
@@ -409,8 +493,9 @@ def process_gemini_export(
         if stats['processed'] % 50 == 0:
             print(f"  Processed {stats['processed']} conversations...")
 
-    # Create index file
-    index_path = output_dir / 'INDEX.md'
+    # Create index file with timestamp (preserves history)
+    index_timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    index_path = output_dir / f'INDEX_{index_timestamp}.md'
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write("# GEMINI Conversation Export\n\n")
         f.write(f"*Extracted: {datetime.now().strftime('%Y-%m-%d %H:%M')}*\n\n")
@@ -419,6 +504,8 @@ def process_gemini_export(
         f.write(f"- **Conversation Sessions**: {stats['processed']}\n")
         f.write(f"- **Total Characters**: {stats['total_chars']:,}\n")
         f.write(f"- **Canvas Creations**: {sum(1 for s in summaries if s['has_canvas'])}\n")
+        if incremental and stats['skipped'] > 0:
+            f.write(f"- **Skipped (existing)**: {stats['skipped']}\n")
         f.write("\n---\n\n")
 
         f.write("## Conversations\n\n")
@@ -431,11 +518,13 @@ def process_gemini_export(
         for s in summaries:
             date = s['date'][:10] if s['date'] else 'Unknown'
             title = s['title'][:50]
-            canvas = '📄' if s['has_canvas'] else ''
+            canvas = '' if s['has_canvas'] else ''
             f.write(f"| {date} | [{title}](conversations/{s['file']}) | {s['activities']} | {s['chars']:,} | {canvas} |\n")
 
     print(f"\nComplete!")
     print(f"  Conversation sessions: {stats['processed']}")
+    if incremental:
+        print(f"  Skipped: {stats['skipped']} existing conversations")
     print(f"  Total activities: {stats['total_activities']}")
     print(f"  Total characters: {stats['total_chars']:,}")
     print(f"  Output: {output_dir}")
@@ -456,6 +545,10 @@ def main():
                        help='Maximum conversations to process')
     parser.add_argument('--no-grouping', action='store_true',
                        help='Keep each activity separate (no session grouping)')
+    parser.add_argument('--incremental', '-i', action='store_true',
+                       help='Skip conversations that were already imported')
+    parser.add_argument('--imports-dir', default='imports',
+                       help='Directory containing import logs (default: imports)')
 
     args = parser.parse_args()
 
@@ -466,6 +559,14 @@ def main():
 
     output_dir = Path(args.output)
 
+    # Load previously imported IDs if incremental mode
+    imported_ids = set()
+    if args.incremental:
+        logger = ImportLogger(Path(args.imports_dir))
+        imported_ids = logger.get_imported_ids('gemini')
+        if imported_ids:
+            print(f"Incremental mode: {len(imported_ids)} previously imported gemini conversations will be skipped")
+
     print("=" * 60)
     print("Gemini Activity Extractor")
     print("=" * 60)
@@ -473,13 +574,17 @@ def main():
     print(f"Output: {output_dir}")
     if args.max:
         print(f"Max conversations: {args.max}")
+    if args.incremental:
+        print(f"Mode: Incremental (skip existing)")
     print()
 
-    process_gemini_export(
+    stats = process_gemini_export(
         input_path,
         output_dir,
         max_conversations=args.max,
-        no_grouping=args.no_grouping
+        no_grouping=args.no_grouping,
+        incremental=args.incremental,
+        imported_ids=imported_ids
     )
 
     return 0
