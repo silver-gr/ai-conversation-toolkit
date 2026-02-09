@@ -1,0 +1,22 @@
+{
+  "name": "obsidian-ai-conversations-viewer",
+  "version": "1.0.0",
+  "description": "Obsidian plugin for viewing AI conversation exports",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "node esbuild.config.mjs production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "esbuild": "^0.20.0",
+    "obsidian": "latest",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "minisearch": "^6.3.0"
+  }
+}

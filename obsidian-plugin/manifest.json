@@ -1,0 +1,9 @@
+{
+  "id": "ai-conversations-viewer",
+  "name": "AI Conversations Viewer",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "View AI conversation exports (Claude, ChatGPT, Gemini) as interactive chat interfaces with browsing, search, and analytics.",
+  "author": "Silver",
+  "isDesktopOnly": false
+}
