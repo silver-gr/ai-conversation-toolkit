@@ -20,6 +20,15 @@ def slugify(text: str, max_len: int = 50) -> str:
     return slug[:max_len]
 
 
+# ChatGPT citation marker pattern: 【...】 brackets with any content inside
+_CITATION_RE = re.compile(r'【[^】]*】')
+
+
+def strip_chatgpt_citations(text: str) -> str:
+    """Remove ChatGPT citation markers like 【turn0search2】 from text."""
+    return _CITATION_RE.sub('', text)
+
+
 @dataclass
 class Message:
     """Normalized message structure."""
@@ -204,6 +213,7 @@ def traverse_chatgpt_tree(mapping: dict, node_id: str, visited: set = None) -> l
         if content_type == 'text':
             parts = content_obj.get('parts', [])
             content = '\n'.join(str(p) for p in parts if p)
+            content = strip_chatgpt_citations(content)
         elif content_type == 'user_editable_context':
             # User profile/instructions - extract but mark as system
             profile = content_obj.get('user_profile', '')

@@ -21,6 +21,17 @@ from parser import slugify, parse_timestamp
 from import_logger import ImportLogger
 
 
+# ChatGPT citation marker pattern: 【...】 brackets with any content inside
+# Matches web search refs (【turn0search2】), doc refs (【21†source】),
+# titled refs (【14†Book Title†L80-L90】), numeric refs (【662637628283421†L75-L93】)
+_CITATION_RE = re.compile(r'【[^】]*】')
+
+
+def strip_chatgpt_citations(text: str) -> str:
+    """Remove ChatGPT citation markers like 【turn0search2】 from text."""
+    return _CITATION_RE.sub('', text)
+
+
 # =============================================================================
 # CLAUDE PARSER
 # =============================================================================
@@ -104,6 +115,7 @@ def traverse_chatgpt_tree(mapping: dict, node_id: str, visited: set = None) -> l
         if content_type == 'text':
             parts = content_obj.get('parts', [])
             content = '\n'.join(str(p) for p in parts if p)
+            content = strip_chatgpt_citations(content)
 
         if content.strip() and role in ('user', 'assistant'):
             messages.append({
