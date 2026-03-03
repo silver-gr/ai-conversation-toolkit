@@ -52,6 +52,38 @@ python3 scripts/gemini_meta_indexer.py              # Dry-run: preview changes
 python3 scripts/gemini_meta_indexer.py --rename      # Apply renames
 python3 scripts/gemini_meta_indexer.py --rename --json  # Also save JSON manifest
 
+# Quality filter: score conversations and move low-value ones to output/_excluded/
+python3 scripts/quality_filter.py --dry-run          # Preview scoring (no moves)
+python3 scripts/quality_filter.py                    # Apply filter (moves excluded files)
+python3 scripts/quality_filter.py --verbose          # Show per-file scoring details
+python3 scripts/quality_filter.py --threshold 50     # Custom score threshold (default: 40)
+
+# Biography extraction: extract biographical facts from conversations using AI
+uv run scripts/biography_extractor.py --all-sources            # All sources (Claude backend)
+uv run scripts/biography_extractor.py --all-sources --sample 20 # Test with 20 files
+uv run scripts/biography_extractor.py --all-sources --export output/profile/data/extractions.json
+
+# Biography extraction v2: multi-model backend support
+uv run scripts/biography_extractor_v2.py --all-sources --provider claude
+uv run scripts/biography_extractor_v2.py --all-sources --provider gemini --model gemini-2.0-flash
+uv run scripts/biography_extractor_v2.py --all-sources --provider codex
+
+# Profile generator: aggregate biography extractions into organized markdown
+python3 scripts/profile_generator.py                          # From default extractions.json
+python3 scripts/profile_generator.py --input output/profile/data/extractions.json
+python3 scripts/profile_generator.py --output-dir output/profile
+
+# =============================================================================
+# VAULT BUILDING
+# =============================================================================
+
+# Build Obsidian vault for any date range (flexible successor to build_december_vault.py)
+python3 scripts/build_vault.py --all                          # All conversations
+python3 scripts/build_vault.py --month 2026-01                # Specific month
+python3 scripts/build_vault.py --from 2025-12-01 --to 2025-12-31
+python3 scripts/build_vault.py --from 2026-01-01              # From date to now
+python3 scripts/build_vault.py --name "my-vault"              # Custom vault name
+
 # =============================================================================
 # INDIVIDUAL EXTRACTORS (for manual/fine-grained control)
 # =============================================================================
@@ -69,7 +101,7 @@ uv run scripts/conversation_summarizer.py ChatGPT/conversations.json --output-di
 uv run scripts/conversation_summarizer.py path/to/conversations.json --no-cache
 uv run scripts/conversation_summarizer.py path/to/conversations.json --clean-cache 7
 
-# Build Obsidian vault from extracted conversations
+# Build December 2025 vault (legacy, hardcoded date range)
 python3 scripts/build_december_vault.py
 
 # =============================================================================
@@ -168,6 +200,30 @@ python3 scripts/migrate_to_yaml.py
 - SQLite cache with SHA256 content hashing for idempotency
 - Requires Claude CLI for LLM analysis
 
+**`quality_filter.py`** - UltraRAG curation filter:
+- Scores each conversation (base 60) using character count, message count, title patterns, and content signals
+- Force-keeps research conversations (any score) and very long ones (>40k chars, 3+ messages)
+- Hard-excludes near-empty files (<300 chars) and single-message stubs
+- Moves excluded files to `output/_excluded/{source}/` (reversible)
+- Outputs `output/QUALITY_FILTER_REPORT.md` with scoring breakdown
+- Default threshold: score ≥ 40; research and long content always kept regardless
+
+**`biography_extractor.py`** / **`biography_extractor_v2.py`** - Biographical fact extraction:
+- Uses AI (Claude CLI) to extract structured biographical facts from conversation content
+- SQLite cache keyed by SHA256 to avoid re-processing unchanged files
+- v2 adds multi-model support: `--provider claude|gemini|codex`
+- Exports structured JSON to `output/profile/data/extractions.json`
+
+**`profile_generator.py`** - Profile aggregation:
+- Reads `output/profile/data/extractions.json` from biography extractor
+- Aggregates facts by life domain category and generates organized markdown files
+- Outputs to `output/profile/` directory
+
+**`build_vault.py`** - Flexible Obsidian vault builder:
+- Successor to `build_december_vault.py`; accepts `--all`, `--month YYYY-MM`, `--from`/`--to` date range
+- Auto-classifies conversations into topic categories (AI & LLMs, Health, Product Dev, etc.)
+- Generates daily notes, topic MOCs, and a dashboard
+
 ### Export Format Differences
 
 | Source | Structure | Timestamps | Messages |
@@ -221,9 +277,17 @@ output/
 │   └── conversations/YYYYMMDD_title-slug.md
 ├── memories/
 │   └── *.md
+├── profile/
+│   ├── data/extractions.json      # Biography extractor output
+│   └── *.md                       # Profile category files
+├── _excluded/                     # Quality-filtered conversations (moved, not deleted)
+│   ├── chatgpt-full/
+│   ├── claude-full/
+│   └── gemini/
 ├── RESEARCH_INDEX.md
+├── QUALITY_FILTER_REPORT.md       # Quality filter scoring report
 ├── gemini_files_to_reindex.json   # Gemini meta-indexer manifest
-└── december-2025-vault/           # Optional Obsidian vault
+└── december-2025-vault/           # Optional Obsidian vault (legacy)
     ├── Home.md
     ├── Daily/YYYY-MM-DD.md
     ├── Topics/*.md
@@ -258,8 +322,9 @@ imports/
 | 2026-01-13 | 1,541 | 142 | — | First logged import |
 | 2026-01-25 | — | — | 343 | First Gemini import |
 | 2026-02-09 | 48 | 319 | 8 | Latest import |
+| 2026-03-02 | 28 | 30 | — | Split-file export format (merged before import) |
 
-**Totals**: 1,605 ChatGPT + 512 Claude + 740 Gemini sessions = **100% ID coverage**
+**Totals**: 1,633 ChatGPT + 542 Claude + 740 Gemini sessions = **100% ID coverage**
 
 ## Import Log Schema
 
@@ -298,3 +363,7 @@ imports/
 - **YAML frontmatter required**: `research_index.py` and `migrate_to_yaml.py` both expect YAML frontmatter. Run migration if working with old-format files.
 - **Gemini non-descriptive titles**: Many Gemini Deep Research sessions default to "start-research". Run `gemini_meta_indexer.py --rename` after imports.
 - **Import ID tracking**: The import logger tracks conversation UUIDs (ChatGPT/Claude) and session timestamps (Gemini) for deduplication. All current exports have 100% ID coverage.
+- **ChatGPT split exports**: As of March 2026, ChatGPT exports conversations as multiple `conversations-000.json` ... `conversations-NNN.json` files (100 per file) instead of a single `conversations.json`. Merge before importing: `python3 -c "import json,glob; data=[c for f in sorted(glob.glob('ChatGPT/conversations-*.json')) for c in json.load(open(f))]; json.dump(data, open('ChatGPT/conversations.json','w'))"`. Internal format (`mapping` dict) is unchanged.
+- **Quality filter is reversible**: Excluded files are moved to `output/_excluded/`, not deleted. Move them back to restore.
+- **Biography extractors require `uv run`**: Both `biography_extractor.py` and `biography_extractor_v2.py` use inline script dependencies (`rich`) and must be run with `uv run`, not `python3`.
+- **Profile generation is two-step**: Run `biography_extractor*.py` first to produce `extractions.json`, then `profile_generator.py` to build the markdown profile.
