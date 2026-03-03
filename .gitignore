@@ -5,6 +5,10 @@ Thumbs.db
 *.swo
 .claude/
 
+# Tool state
+.omc/
+.tldr/
+
 # Python
 __pycache__/
 *.py[cod]
